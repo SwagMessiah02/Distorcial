@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c35h8ahcqvd8d"]
+
+[ext_resource type="Script" uid="uid://7n30w2dho057" path="res://espinhos.gd" id="1_m45rj"]
+[ext_resource type="Texture2D" uid="uid://c3bjnsjybicmy" path="res://Art/table.png" id="2_m45rj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m45rj"]
+size = Vector2(34, 24)
+
+[node name="Espinhos" type="Area2D"]
+script = ExtResource("1_m45rj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -12)
+shape = SubResource("RectangleShape2D_m45rj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -16)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_m45rj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

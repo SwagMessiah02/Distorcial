@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbhehxahg5t0o"]
+
+[ext_resource type="Texture2D" uid="uid://bkwk0fgggta21" path="res://Art/sprite_0.png" id="1_po3ty"]
+[ext_resource type="Texture2D" uid="uid://dw7y2wjqq25km" path="res://Art/sprite_1.png" id="2_ctr2x"]
+[ext_resource type="Texture2D" uid="uid://cc1rqdyp8lg7f" path="res://Art/sprite_2.png" id="3_m1hey"]
+[ext_resource type="Texture2D" uid="uid://fljip13uy503" path="res://Art/sprite_3.png" id="4_635nh"]
+[ext_resource type="Texture2D" uid="uid://d203b1g6ty7r3" path="res://Art/sprite_4.png" id="5_gm0w1"]
+[ext_resource type="Texture2D" uid="uid://dfmc76hw63jxx" path="res://Art/sprite_5.png" id="6_fyn54"]
+[ext_resource type="Texture2D" uid="uid://dno5e3fcoqhmx" path="res://Art/sprite_6.png" id="7_hs6vl"]
+[ext_resource type="Texture2D" uid="uid://g80aa7qpsk24" path="res://Art/sprite_7.png" id="8_mkedj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po3ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_po3ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ctr2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m1hey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_635nh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gm0w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fyn54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hs6vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mkedj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_7of6j"]
+script/source = "extends AnimatedSprite2D
+
+func _ready() -> void:
+	ghosting()
+
+func set_porperty(tx_pos, tx_scale):
+	position = tx_pos
+	scale = tx_scale
+	
+func ghosting():
+	var tween_fade = get_tree().create_tween()
+	tween_fade.tween_property(self, \"self_modulate\", Color(1.0, 1.0, 1.0, 0.0), 0.75)
+	await tween_fade.finished
+	
+	queue_free()
+	
+	
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+show_behind_parent = true
+position = Vector2(2.00002, 2)
+scale = Vector2(1.92188, 1.89062)
+sprite_frames = SubResource("SpriteFrames_po3ty")
+script = SubResource("GDScript_7of6j")
